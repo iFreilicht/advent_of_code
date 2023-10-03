@@ -1,4 +1,5 @@
 input ← &ru @\0 &fo "input"
+Part ← 2 # Set to 2 to solve Part2
 
 ⊢→'↘1 . ⊜□ ≠@\n .input # Split input into instructions and boards
 # Parse instructions
@@ -31,7 +32,9 @@ input ← &ru @\0 &fo "input"
 )
 
 ∵!⍘⊟⍉ # Turn result into two arrays containing the board and number of turns each
-/↧. # Find how many turns it took to win
+
+/(?↧↥ ≠2Part). # Get lowest (part1) or highest (part2) number of turns required
+
 →(⊡⊗). # Get the winning board
 →(⊡-1)∶ # Get the final drawn number
 ∷'-1 # Undo incrementing shennenigans from before
