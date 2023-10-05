@@ -12,7 +12,7 @@ parsed
 
 # Part 2
 # One step for the fold
-# For two arrays [a b c] [d e], computes [a+d b+e*c c+e]
+# For two arrays [a b c] [d e], computes [a+d b+d*c c+e]
 step ← |2 ↻¯1 ⊂⊙+ ⊂⊙+ [+×]/∘⊏3_0_4_2_1_2_3⊂
 parsed
 ∧step 0_0_0 # Final position as [HorizontalPos Depth Aim]
