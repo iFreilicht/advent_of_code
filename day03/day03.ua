@@ -4,14 +4,14 @@ parsed ← ⊜∵parse ≠@\n .input
 # Part 1
 parsed
 ≥÷2⧻∶/+. # 0 if there's more 0s, 1 otherwise
-×∷⍘⋯¬.⇌
+×∩⍘⋯¬.⇌
 &p
 
 # Part 2
 # Oxygen generator rating
 stepOx ← (
   ∶ # Put the index on top
-  →'⍉.
+  ⊙'⍉.
   ⊡
   ≥÷2⧻∶/+.. # 0 if there's more 0s, 1 otherwise
   =
@@ -25,7 +25,7 @@ parsed
 
 stepCo ← (
   ∶ # Put the index on top
-  →'⍉.
+  ⊙'⍉.
   ⊡
   <÷2⧻∶/+.. # 0 if there's fewer 0s, 1 otherwise
   =
