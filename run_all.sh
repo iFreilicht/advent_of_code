@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-for d in day*; do
+for d in aoc*/day*; do
 (
     cd $d
     echo -e "\n----- $d -----"
