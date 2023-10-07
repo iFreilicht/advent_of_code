@@ -1,11 +1,11 @@
-input ← &ru @\0 &fo "input"
-parsed ← ⊜parse≠,@\n input
+Input ← &ru @\0 &fo "input"
+Parsed ← ⊜parse≠,@\n Input
 # Part 1
-/+≡'>⍘⊟ ◫2 parsed
+/+≡'>⍘⊟ ◫2 Parsed
 
 # Part 2
-/+≡'>⍘⊟ ◫2 ≡/+◫3 parsed
+/+≡'>⍘⊟ ◫2 ≡/+◫3 Parsed
 
-∶dump
+∶dump∘
 ⍤"Wrong result for part 1!" =1446
 ⍤"Wrong result for part 2!" =1486

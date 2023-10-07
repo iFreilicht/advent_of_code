@@ -1,7 +1,7 @@
-input ← &ru @\0 &fo "input"
-⊜□ ≠@\n .input # Separate lines
-≡(|1 ⊏0_2 ⊜□ ≠@ .!)
-∵(|1 ⊜parse ≠@, .!)
+Input ← &ru @\0 &fo "input"
+⊜□ ≠@\n .Input # Separate lines
+≡(⊏0_2 ⊜□ ≠@ .⊔)
+∵(⊜parse ≠@, .⊔)
 
 +1⍥/↥3. # Get maximum possible edge-length of board
 ↯[.] ⊙(0) # Create board with that size
@@ -19,14 +19,14 @@ input ← &ru @\0 &fo "input"
 
 ∧(
   ⍜⍉(
-    ⊢⇌⊏⌂⌵.≡/-. # Find the x or y length of this line, whichever is greater
+    ⊢⇌⊏⍏⌵.≡/-. # Find the x or y length of this line, whichever is greater
     ≡(□+⊙/↧?⇌∘=¯1±∶⇡+1⌵./-.)∶ # Create a range from the start to the end for both axes
-    ∺(|2 ↯[+1⌵]∶!) # Extend and merge as one axis could have a length of just 1
+    ∺(↯[+1⌵]∶⊔) # Extend and merge as one axis could have a length of just 1
   )∶
   ∧(⍜(⊡)(+1)∶)∶ # Increment all points the line crosses
 )∶
 ⍉
 /+♭>1 # Count all points crossed more than once
 
-dump
+dump∘
 ⍤"Wrong result for part 2!" =20299

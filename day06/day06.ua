@@ -1,24 +1,24 @@
-input ← &ru @\0 &fo "input"
-parsed ← ⊜parse ×⊃'≠@,'≠@\n .input
+Input ← &ru @\0 &fo "input"
+Parsed ← ⊜parse ×⊃'≠@,'≠@\n .Input
 
 # Part 1
 # Naive implementation, just have an array with one element per fish
-stepOne ← ⊂+×7<0.-1∶[⍥(8)]/+=0.
-⍥(stepOne)80 parsed
+StepOne ← ⊂+×7<0.-1∶[⍥(8)]/+=0.
+⍥(StepOne)80 Parsed
 ⧻
 .
 
 # Part 2
 # Use structure that stores the number of fish per internal timer
-stepTwo ← ⍜'⊡6+∶⊡8.↻1
-convert ← ∺(/+⌕)⇡9
-⍥(stepTwo)80 convert parsed
+StepTwo ← ⍜'⊡6+∶⊡8.↻1
+Convert ← ∺(/+⌕)⇡9
+⍥(StepTwo)80 Convert Parsed
 /+
 ⍤"Efficient solution should yield same result as naive one!" =
 
-⍥(stepTwo)256 convert parsed
+⍥(StepTwo)256 Convert Parsed
 /+
 
-∶dump
+∶dump∘
 ⍤"Wrong result for part 1!" =386755
 ⍤"Wrong result for part 2!" =1732731810807

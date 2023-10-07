@@ -1,14 +1,14 @@
-input ← &ru @\0 &fo "input"
-parsed ← ⊜∵parse ≠@\n .input
+Input ← &ru @\0 &fo "input"
+Parsed ← ⊜∵parse ≠@\n .Input
 
 # Part 1
-parsed
+Parsed
 ≥÷2⧻∶/+. # 0 if there's more 0s, 1 otherwise
 ×∩⍘⋯¬.⇌
 
 # Part 2
 # Oxygen generator rating
-stepOx ← (
+StepOx ← (
   ∶ # Put the index on top
   ⊙'⍉.
   ⊡
@@ -17,12 +17,12 @@ stepOx ← (
   +×1≅[0]. # If the mask is [0], make it [1]
   ▽
 )
-parsed
+Parsed
 ⇡⧻⍉.
-∧stepOx ∶
+∧StepOx ∶
 ⍘⋯⇌♭
 
-stepCo ← (
+StepCo ← (
   ∶ # Put the index on top
   ⊙'⍉.
   ⊡
@@ -31,14 +31,14 @@ stepCo ← (
   +×1≅[0]. # If the mask is [0], make it [1]
   ▽
 )
-parsed
+Parsed
 ⇡⧻⍉.
-∧(stepCo) ∶
+∧(StepCo) ∶
 ⍘⋯⇌♭
 
 # Now multiply both results
 ×
 
-∶dump
+∶dump∘
 ⍤"Wrong result for part 1!" =2640986
 ⍤"Wrong result for part 2!" =6822109
