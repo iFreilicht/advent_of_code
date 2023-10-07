@@ -8,7 +8,6 @@ parsed ← ≡(×∶map⍘⊟) ⊜([⊗0≠@ ∶parse⊢⇌.])≠,@\n input
 parsed
 /+ # Final position as [HorizontalPos Depth]
 /×
-&p
 
 # Part 2
 # One step for the fold
@@ -17,3 +16,7 @@ step ← |2 [⊃⊃(+⊙⋅⋅∘)(+⊙×⋅⊙⊙∘)(+⋅⋅⊙⋅∘)]/∘⇌
 parsed
 ∧step 0_0_0 # Final position as [HorizontalPos Depth Aim]
 /×↙2
+
+∶dump
+⍤"Wrong result for part 1!" =2147104
+⍤"Wrong result for part 2!" =2044620088

@@ -25,5 +25,8 @@ input ← &ru @\0 &fo "input"
   )∶
   ∧(⍜(⊡)(+1)∶)∶ # Increment all points the line crosses
 )∶
-~⍉
+⍉
 /+♭>1 # Count all points crossed more than once
+
+dump
+⍤"Wrong result for part 2!" =20299

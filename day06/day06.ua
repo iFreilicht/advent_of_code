@@ -6,7 +6,8 @@ parsed ← ⊜parse ×⊃'≠@,'≠@\n .input
 stepOne ← ⊂+×7<0.-1∶[⍥(8)]/+=0.
 ⍥(stepOne)80 parsed
 ⧻
-&p.
+.
+
 # Part 2
 # Use structure that stores the number of fish per internal timer
 stepTwo ← ⍜'⊡6+∶⊡8.↻1
@@ -17,3 +18,7 @@ convert ← ∺(/+⌕)⇡9
 
 ⍥(stepTwo)256 convert parsed
 /+
+
+∶dump
+⍤"Wrong result for part 1!" =386755
+⍤"Wrong result for part 2!" =1732731810807

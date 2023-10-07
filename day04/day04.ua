@@ -33,7 +33,7 @@ Part ← 2 # Set to 2 to solve Part2
 
 ∵!⍘⊟⍉ # Turn result into two arrays containing the board and number of turns each
 
-/(?↧↥ ≠2Part). # Get lowest (part1) or highest (part2) number of turns required
+/(↧↥ ≠2Part). # Get lowest (part1) or highest (part2) number of turns required
 
 ⊙(⊡⊗). # Get the winning board
 ⊙(⊡-1)∶ # Get the final drawn number
@@ -41,3 +41,6 @@ Part ← 2 # Set to 2 to solve Part2
 ×¬±¬±. # Only keep positive numbers
 /+♭ # Sum them all
 × # Multiply for final result
+
+dump
+⍤$"Wrong result for part _!" Part =5685
