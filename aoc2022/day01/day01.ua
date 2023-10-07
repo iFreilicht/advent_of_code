@@ -1,6 +1,5 @@
 &ru @\0 &fo "input"
-∧(⊂⊙(?'@x;⊢≅"\n\n".)) "" ◫2 # Replace double newlines with x\n
-⊜(□⊜parse ≠@\n .) ≠@x . # Group by x and then by \n
+⊜(□⊜parse ≠@\n .) ¬⊂0⌕"\n\n". # Group by \n\n and then by \n
 Parsed ← 
 
 # Part 1
