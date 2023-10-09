@@ -1,6 +1,6 @@
 &ru @\0 &fo "input"
 ⊜(⊜⊢ ≠@ .) ≠@\n .
-Parsed ← 
+Parsed ←
 
 # Part 1
 CalcScore ← /+ ≡(

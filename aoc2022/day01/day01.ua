@@ -1,6 +1,6 @@
 &ru @\0 &fo "input"
 ⊜(□⊜parse ≠@\n .) ¬⊂0⌕"\n\n". # Group by \n\n and then by \n
-Parsed ← 
+Parsed ←
 
 # Part 1
 Parsed
