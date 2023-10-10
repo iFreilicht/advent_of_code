@@ -19,11 +19,13 @@ Priority ← ◿58+1-@a
 
 # Part 2
 ⊜∘+1⌊÷3⇡⧻. # Partition into groups of 3
-≡(|1 ⍜(-@\0)(|1
+≡(|1 
+  ⍜(-@\0)(|1
     /⊔
     ▽±.⊝FindDups
     /↥FindDups
-  ))
+  )
+)
 Priority
 /+
 

@@ -137,11 +137,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1696832917,
-        "narHash": "sha256-5VtCP5ynHUoqJulLi8JnlUOrmWy0Y0W7mfHMla21ouU=",
+        "lastModified": 1696966311,
+        "narHash": "sha256-EXOBEvUAS0jCj9BAmy63dh0Dy30VOW0PBdsoa/2Jcx0=",
         "owner": "uiua-lang",
         "repo": "uiua",
-        "rev": "56c151fb6058b4669adf8a55eb3151988194d35d",
+        "rev": "4003fd1d5a2a76d06746c595c5e3a9a671b23089",
         "type": "github"
       },
       "original": {
