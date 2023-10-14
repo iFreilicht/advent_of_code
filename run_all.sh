@@ -3,6 +3,6 @@ for d in aoc*/day*; do
 (
     cd $d
     echo -e "\n----- $d -----"
-    uiua run
+    uiua run day*.ua
 )
 done
