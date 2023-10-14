@@ -11,14 +11,10 @@ x ← □""
     ≅".."⊔⊡2 # Is the directory ".."?
     ?(
       ⊃'↘1'⊂⊢ # Move top directory from dir stack to fin array
-    )(
-      ⊂ 0 # Put the directory size on top of the dir stack
-      ⊙∘ # Workaround for #130, see https://github.com/uiua-lang/uiua/issues/130
-    )
+    )'⊂0 # Put the directory size on top of the dir stack
   )(
     ±.⍣(parse⊔⊡0)(0;;) # Does the current line start with a number?
-    ?∺'+∶'∘; # If so, add it to all directories on the dir stack
-    ⊙∘ # Workaround for #130
+    ?(∺'+∶); # If so, add it to all directories on the dir stack
   )
 )
 ⊏⍏.⊂ # Turn the two separate lists into one, sorted by size
