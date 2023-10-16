@@ -15,9 +15,9 @@
 
 ⊃⊃⊃∘≡⇌'⇌⍉'⍉⇌ # Create four version of the board, each with a different border to the left
 ∩∩≡(
-  ∶⇡⧻.
-  ∺(
-    ↘∶ # Only consider trees to the "right"
+  ⇡⧻.
+  ⍚0_∞(
+    ↘ # Only consider trees to the "right"
     ∺≥ ⊃⊢'↘1 # Mark trees blocking the view
     +1⊚. # Get distance to those trees
     ⊙⧻ # Get distance to edge
