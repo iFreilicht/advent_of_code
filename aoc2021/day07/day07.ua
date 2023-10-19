@@ -5,12 +5,12 @@ Parsed ← ⊜parse ≠@, .▽≠@\n .Input
 ⊃/↥/↧ .Parsed
 ⊙(⍤"Minimum is not 0!" =0)
 ⇡ # Get all potential target positions
-⍚0_∞(/+⌵-) # Determine fuel spent if target position was selected
+≑~⋄(/+⌵-) # Determine fuel spent if target position was selected
 /↧ # Find the lowest one
 
 # Part 2
 ⇡/↥ .Parsed
-⍚0_∞(/+ ÷2×+1. ⌵-) # Naive alternative ∵(/++1⇡) is very slow
+≑~⋄(/+ ÷2×+1. ⌵-) # Naive alternative ∵(/++1⇡) is very slow
 /↧
 
 ∶dump∘

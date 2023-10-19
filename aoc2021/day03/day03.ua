@@ -9,31 +9,29 @@ Parsed
 # Part 2
 # Oxygen generator rating
 StepOx ← (
-  ∶ # Put the index on top
   ⊙'⍉.
   ⊡
   ≥÷2⧻∶/+.. # 0 if there's more 0s, 1 otherwise
   =
-  +×1≅[0]. # If the mask is [0], make it [1]
+  +×1≍[0]. # If the mask is [0], make it [1]
   ▽
 )
 Parsed
 ⇡⧻⍉.
-∧StepOx ∶
+∧~⋄StepOx
 ⍘⋯⇌♭
 
 StepCo ← (
-  ∶ # Put the index on top
   ⊙'⍉.
   ⊡
   <÷2⧻∶/+.. # 0 if there's fewer 0s, 1 otherwise
   =
-  +×1≅[0]. # If the mask is [0], make it [1]
+  +×1≍[0]. # If the mask is [0], make it [1]
   ▽
 )
 Parsed
 ⇡⧻⍉.
-∧(StepCo) ∶
+∧~⋄StepCo
 ⍘⋯⇌♭
 
 # Now multiply both results

@@ -5,7 +5,7 @@
 ⊙(
   ⊃⊃⊃∘≡⇌'⇌⍉'⍉⇌ # Create four version of the board, each with a different border to the left
   ∩∩≡(
-    ∧(⊂⊙⊃>↥) [] ¯1 # Create mask of visible trees
+    ∧⋄⋄~(⊂⊙⊃>↥) [] ¯1 # Create mask of visible trees
     ⊙; # Discard height of highest tree
   )
   ⊓⊓⊓∘≡⇌'⍉⇌'⇌⍉ # Rotate boards back
@@ -16,9 +16,9 @@
 ⊃⊃⊃∘≡⇌'⇌⍉'⍉⇌ # Create four version of the board, each with a different border to the left
 ∩∩≡(
   ⇡⧻.
-  ⍚0_∞(
+  ≑~⋄(
     ↘ # Only consider trees to the "right"
-    ∺≥ ⊃⊢'↘1 # Mark trees blocking the view
+    ≑~⋄≥ ⊃⊢'↘1 # Mark trees blocking the view
     +1⊚. # Get distance to those trees
     ⊙⧻ # Get distance to edge
     ⊢⊂ # Take distance to tree if there is one blocking the view, otherwise to the edge

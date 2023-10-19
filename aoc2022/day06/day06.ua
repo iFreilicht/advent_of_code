@@ -1,9 +1,10 @@
-f ← ∧(⎋∶+¬,⊙(≅⇡4⊛)) 4 ◫4 # Part 1 only
-g ← ∧(⎋∶+¬,⊙(≅⇡⧻.⊛)) ⊙◫. # Generic solution
+f ← ∧⋄~(⎋∶+¬,⊙(≍⇡4⊛)) 4 ◫4 # Part 1 only
+g ← ∧⋄~(⎋∶+¬,⊙(≍⇡⧻.⊛)) ⊙◫. # Generic solution
+Example ← &i "examples.ua"
 
-≡(⍤∶=, f ∩⊔⊃⊢'⊡1) &i "examples1.ua" # Test examples
-≡(⍤∶=, g 4 ∩⊔⊃⊢'⊡1) &i "examples1.ua" # Test examples
-≡(⍤∶=, g 14 ∩⊔⊃⊢'⊡1) &i "examples2.ua" # Test examples
+≡(⍤∶=, f ∩⊔⊃⊢'⊡1) Example "One" # Test examples
+≡(⍤∶=, g 4 ∩⊔⊃⊢'⊡1) Example "One" # Test examples
+≡(⍤∶=, g 14 ∩⊔⊃⊢'⊡1) Example "Two" # Test examples
 
 # Part 1
 g 4 &ru @\n &fo "input"

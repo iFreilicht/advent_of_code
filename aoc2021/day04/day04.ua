@@ -12,7 +12,7 @@ Part ← 2 # Set to 2 to solve Part2
 ∩'+1
 ⊙(.)
 ≡[0 □] # Keep track of how many turns each board needs to win
-⍚1_∞∧(
+≑≃⋄∧⋄~(
   ⊃⊢'⊡1 # Unpack counter and board
   [
     # Create the array for the next iteration

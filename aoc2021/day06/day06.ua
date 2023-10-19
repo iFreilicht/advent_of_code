@@ -11,7 +11,7 @@ StepOne ← ⊂+×7<0.-1∶[⍥(8)]/+=0.
 # Part 2
 # Use structure that stores the number of fish per internal timer
 StepTwo ← ⍜'⊡6+∶⊡8.↻1
-Convert ← ∺(/+⌕∶)∶⇡9
+Convert ← ≑~⋄(/+⌕)⇡9
 ⍥(StepTwo)80 Convert Parsed
 /+
 ⍤"Efficient solution should yield same result as naive one!" =
