@@ -1,9 +1,7 @@
-x ← □""
-
 # Turn the list of commands and outputs into a list of directories and their sizes
 [] # Array for finished directories (fin array)
 [] # Stack of directories we're currently in (dir stack)
-⬚⊜(⊜□ ≠@ .)x ≠@\n . &ru @\0 &fo "input"
+⬚(□"")⊜(⊜□ ≠@ .) ≠@\n . &ru @\0 &fo "input"
 ∧~⋄⋄(|3.2
   ≠0⧻⊡2. # Is there a third element? (only the case for `cd`)
   ?(

@@ -1,6 +1,6 @@
 Input ← &ru @\0 &fo "input"
 # Map space index to [Forward Down/Aim]
-Map ← ⊡∶⬚[0 0 0_¯1 0 0_1 0 0 1_0]0
+Map ← ⊡∶⬚0[0 0 0_¯1 0 0_1 0 0 1_0]
 # Movements as [Magnitude SpaceIndex]
 Parsed ← ≡(×∶Map⍘⊟) ⊜([⊗0≠@ ∶parse⊢⇌.])≠,@\n Input
 

@@ -3,7 +3,7 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.uiua = {
-    url = "github:uiua-lang/uiua/dev";
+    url = "github:uiua-lang/uiua";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.flake-utils.follows = "flake-utils";
   };

@@ -5,7 +5,7 @@ Parsed ← (
   ⊃(
     # Parse instructions
     ⊔⊡1
-    ⊜(∵⍆parse ▽◿2⇡6 ⊜□ ≠@ .) ≠@\n . # Split lines and remove verbs
+    ⊜(∵⊐parse ▽◿2⇡6 ⊜□ ≠@ .) ≠@\n . # Split lines and remove verbs
   )(
     # Parse start state
     ⊔⊢
@@ -31,7 +31,7 @@ Parsed
 ⍜(↘1⍉)'-1 # Normalize indices to 0
 ∧~⋄(
   ⊃⊃⊃'⊡2'⊡1⋅∘⊢ # Unpack and arrange arguments
-  ⊙⍜⊡⍜⊔'⊃↘↙∶ # Remove top n crates from stack
+  ⊙⍜⊡⍜⊔(⊃↘↙∶) # Remove top n crates from stack
   ⍜⊡⍜⊔'⊂∶ # Put them on the target stack
 )
 ≡⊢
