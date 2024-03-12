@@ -21,12 +21,20 @@ pub fn main() {
   }
 }
 
-pub fn solution() {
-  use filepath <- try(case argv.load().arguments {
+fn solution() {
+  use filepath <- try(get_args())
+
+  part1(filepath)
+}
+
+fn get_args() {
+  case argv.load().arguments {
     [filepath] -> Ok(filepath)
     _ -> Error("Usage: gleam run <file>")
-  })
+  }
+}
 
+pub fn part1(filepath) {
   use content <- try(
     simplifile.read(filepath)
     |> map_error(fn(err) { "Failed to open file: " <> string.inspect(err) }),
