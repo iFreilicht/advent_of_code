@@ -1,6 +1,6 @@
 import argv
 import simplifile
-import gleam/string.{is_empty, split, to_utf_codepoints, utf_codepoint_to_int}
+import gleam/string.{is_empty, pop_grapheme, split, starts_with}
 import gleam/list.{filter, first, last, map, reduce}
 import gleam/result.{map_error, replace_error, try}
 import gleam/int
@@ -22,28 +22,32 @@ pub fn main() {
 }
 
 fn solution() {
-  use filepath <- try(get_args())
+  use #(cmd, filepath) <- try(get_args())
 
-  part1(filepath)
+  case cmd {
+    "1" -> part1(filepath)
+    "2" -> part2(filepath)
+    _ -> Error(usage)
+  }
 }
+
+const usage = "Usage: gleam run 0|1|r <file>"
 
 fn get_args() {
   case argv.load().arguments {
-    [filepath] -> Ok(filepath)
-    _ -> Error("Usage: gleam run <file>")
+    [cmd, filepath] -> Ok(#(cmd, filepath))
+    _ -> Error(usage)
   }
 }
 
 pub fn part1(filepath) {
-  read_lines(filepath)
-  |> try(calculate_solution)
+  calculate_solution(filepath, digit_patterns_part1)
 }
 
 pub fn part2(filepath) {
-  use lines <- try(read_lines(filepath))
-  lines
-  |> map(replace_words_with_digits(_, ""))
-  |> calculate_solution
+  let patterns = list.append(digit_patterns_part1, digit_patterns_part2)
+
+  calculate_solution(filepath, patterns)
 }
 
 fn read_lines(filepath) {
@@ -60,67 +64,72 @@ fn read_lines(filepath) {
   Ok(lines)
 }
 
-const replacement_values = [
-  #("one", "1"),
-  #("two", "2"),
-  #("three", "3"),
-  #("four", "4"),
-  #("five", "5"),
-  #("six", "6"),
-  #("seven", "7"),
-  #("eight", "8"),
-  #("nine", "9"),
-]
+fn calculate_solution(filepath, patterns) {
+  use lines <- try(read_lines(filepath))
 
-pub fn replace_words_with_digits(leftover_line, transformed_line) -> String {
-  use line <-
-    fn(then) {
-      case string.length(leftover_line) {
-        0 -> transformed_line
-        _ -> then(leftover_line)
-      }
-    }
-
-  let match =
-    replacement_values
-    |> list.find(fn(mapping) {
-      line
-      |> string.starts_with(mapping.0)
-    })
-
-  case match {
-    Ok(#(word, numeral)) -> {
-      let assert Ok(#(_word, rest_of_line)) =
-        string.split_once(leftover_line, on: word)
-
-      replace_words_with_digits(rest_of_line, transformed_line <> numeral)
-    }
-    _ -> {
-      let assert Ok(#(head, tail)) = string.pop_grapheme(leftover_line)
-      replace_words_with_digits(tail, transformed_line <> head)
-    }
-  }
-}
-
-fn calculate_solution(lines) {
-  use numbers <- try(result.all(
+  let digits =
     lines
-    |> map(fn(line) {
-      line
-      |> to_utf_codepoints
-      |> map(fn(codepoint) {
-        codepoint
-        |> utf_codepoint_to_int
-        |> int.subtract(48)
-      })
-      |> filter(fn(x) { x >= 0 && x <= 9 })
-      |> parse_number
-    }),
+    |> map(find_digits(patterns, _, []))
+
+  use numbers <- try(result.all(
+    digits
+    |> map(parse_number),
   ))
 
   numbers
   |> reduce(int.add)
   |> replace_error("Numbers list was empty!")
+}
+
+pub const digit_patterns_part1 = [
+  #("1", 1),
+  #("2", 2),
+  #("3", 3),
+  #("4", 4),
+  #("5", 5),
+  #("6", 6),
+  #("7", 7),
+  #("8", 8),
+  #("9", 9),
+]
+
+pub const digit_patterns_part2 = [
+  #("one", 1),
+  #("two", 2),
+  #("three", 3),
+  #("four", 4),
+  #("five", 5),
+  #("six", 6),
+  #("seven", 7),
+  #("eight", 8),
+  #("nine", 9),
+]
+
+pub fn find_digits(
+  digit_patterns: List(#(String, Int)),
+  line,
+  digits,
+) -> List(Int) {
+  use next_line <-
+    fn(then) {
+      case pop_grapheme(line) {
+        Ok(#(_, next_line)) -> then(next_line)
+        _ -> digits
+      }
+    }
+
+  let match =
+    digit_patterns
+    |> list.find(fn(mapping) {
+      line
+      |> starts_with(mapping.0)
+    })
+
+  case match {
+    Ok(#(_, digit)) -> list.append(digits, [digit])
+    _ -> digits
+  }
+  |> find_digits(digit_patterns, next_line, _)
 }
 
 pub fn parse_number(digits) {
