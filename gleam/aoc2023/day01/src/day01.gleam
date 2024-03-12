@@ -35,6 +35,18 @@ fn get_args() {
 }
 
 pub fn part1(filepath) {
+  read_lines(filepath)
+  |> try(calculate_solution)
+}
+
+pub fn part2(filepath) {
+  use lines <- try(read_lines(filepath))
+  lines
+  |> map(replace_words_with_digits(_, ""))
+  |> calculate_solution
+}
+
+fn read_lines(filepath) {
   use content <- try(
     simplifile.read(filepath)
     |> map_error(fn(err) { "Failed to open file: " <> string.inspect(err) }),
@@ -45,6 +57,52 @@ pub fn part1(filepath) {
     |> split("\n")
     |> filter(fn(line) { !is_empty(line) })
 
+  Ok(lines)
+}
+
+const replacement_values = [
+  #("one", "1"),
+  #("two", "2"),
+  #("three", "3"),
+  #("four", "4"),
+  #("five", "5"),
+  #("six", "6"),
+  #("seven", "7"),
+  #("eight", "8"),
+  #("nine", "9"),
+]
+
+pub fn replace_words_with_digits(leftover_line, transformed_line) -> String {
+  use line <-
+    fn(then) {
+      case string.length(leftover_line) {
+        0 -> transformed_line
+        _ -> then(leftover_line)
+      }
+    }
+
+  let match =
+    replacement_values
+    |> list.find(fn(mapping) {
+      line
+      |> string.starts_with(mapping.0)
+    })
+
+  case match {
+    Ok(#(word, numeral)) -> {
+      let assert Ok(#(_word, rest_of_line)) =
+        string.split_once(leftover_line, on: word)
+
+      replace_words_with_digits(rest_of_line, transformed_line <> numeral)
+    }
+    _ -> {
+      let assert Ok(#(head, tail)) = string.pop_grapheme(leftover_line)
+      replace_words_with_digits(tail, transformed_line <> head)
+    }
+  }
+}
+
+fn calculate_solution(lines) {
   use numbers <- try(result.all(
     lines
     |> map(fn(line) {
