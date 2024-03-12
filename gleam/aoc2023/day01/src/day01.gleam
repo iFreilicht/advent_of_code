@@ -69,7 +69,7 @@ fn calculate_solution(filepath, patterns) {
 
   let digits =
     lines
-    |> map(find_digits(patterns, _, []))
+    |> map(find_digits(patterns, _))
 
   use numbers <- try(result.all(
     digits
@@ -105,16 +105,12 @@ pub const digit_patterns_part2 = [
   #("nine", 9),
 ]
 
-pub fn find_digits(
-  digit_patterns: List(#(String, Int)),
-  line,
-  digits,
-) -> List(Int) {
-  use next_line <-
+pub fn find_digits(digit_patterns: List(#(String, Int)), line) -> List(Int) {
+  use digits <-
     fn(then) {
       case pop_grapheme(line) {
-        Ok(#(_, next_line)) -> then(next_line)
-        _ -> digits
+        Ok(#(_, next_line)) -> then(find_digits(digit_patterns, next_line))
+        _ -> []
       }
     }
 
@@ -126,10 +122,9 @@ pub fn find_digits(
     })
 
   case match {
-    Ok(#(_, digit)) -> list.append(digits, [digit])
+    Ok(#(_, digit)) -> [digit, ..digits]
     _ -> digits
   }
-  |> find_digits(digit_patterns, next_line, _)
 }
 
 pub fn parse_number(digits) {
