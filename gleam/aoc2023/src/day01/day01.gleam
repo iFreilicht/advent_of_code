@@ -1,44 +1,10 @@
-import argv
 import simplifile
 import gleam/string.{is_empty, pop_grapheme, split, starts_with}
 import gleam/list.{filter, first, last, map, reduce}
 import gleam/result.{map_error, replace_error, try}
 import gleam/int
-import gleam/io
 
-pub fn main() {
-  case solution() {
-    Ok(result) -> {
-      result
-      |> int.to_string
-      |> io.println
-      Ok(Nil)
-    }
-    Error(err) -> {
-      io.println_error(err)
-      Error(Nil)
-    }
-  }
-}
-
-fn solution() {
-  use #(cmd, filepath) <- try(get_args())
-
-  case cmd {
-    "1" -> part1(filepath)
-    "2" -> part2(filepath)
-    _ -> Error(usage)
-  }
-}
-
-const usage = "Usage: gleam run 0|1|r <file>"
-
-fn get_args() {
-  case argv.load().arguments {
-    [cmd, filepath] -> Ok(#(cmd, filepath))
-    _ -> Error(usage)
-  }
-}
+pub const parts = [part1, part2]
 
 pub fn part1(filepath) {
   calculate_solution(filepath, digit_patterns_part1)
@@ -79,6 +45,7 @@ fn calculate_solution(filepath, patterns) {
   numbers
   |> reduce(int.add)
   |> replace_error("Numbers list was empty!")
+  |> result.map(int.to_string)
 }
 
 pub const digit_patterns_part1 = [
