@@ -1,8 +1,8 @@
-import simplifile
-import gleam/string.{is_empty, pop_grapheme, split, starts_with}
-import gleam/list.{filter, first, last, map, reduce}
-import gleam/result.{map_error, replace_error, try}
+import gleam/string.{pop_grapheme, starts_with}
+import gleam/list.{first, last, map, reduce}
+import gleam/result.{replace_error, try}
 import gleam/int
+import shared.{read_lines}
 
 pub const parts = [part1, part2]
 
@@ -14,20 +14,6 @@ pub fn part2(filepath) {
   let patterns = list.append(digit_patterns_part1, digit_patterns_part2)
 
   calculate_solution(filepath, patterns)
-}
-
-fn read_lines(filepath) {
-  use content <- try(
-    simplifile.read(filepath)
-    |> map_error(fn(err) { "Failed to open file: " <> string.inspect(err) }),
-  )
-
-  let lines =
-    content
-    |> split("\n")
-    |> filter(fn(line) { !is_empty(line) })
-
-  Ok(lines)
 }
 
 fn calculate_solution(filepath, patterns) {
