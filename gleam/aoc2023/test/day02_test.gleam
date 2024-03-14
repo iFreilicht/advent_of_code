@@ -9,4 +9,12 @@ pub fn day02_test() {
   "src/day02/input"
   |> day02.part1
   |> should.equal(Ok("2149"))
+
+  "src/day02/example"
+  |> day02.part2
+  |> should.equal(Ok("2286"))
+
+  "src/day02/input"
+  |> day02.part2
+  |> should.equal(Ok("71274"))
 }
