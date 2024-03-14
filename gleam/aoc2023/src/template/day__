@@ -1,0 +1,17 @@
+import gleam/result.{try}
+import gleam/list
+import gleam/string
+import gleam/int
+import shared.{read_lines}
+
+pub const parts = [part1, part2]
+
+pub fn part1(filepath) {
+  use lines <- try(read_lines(filepath))
+  todo
+}
+
+pub fn part2(filepath) {
+  use lines <- try(read_lines(filepath))
+  todo
+}
