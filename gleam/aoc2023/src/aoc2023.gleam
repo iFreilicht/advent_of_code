@@ -8,8 +8,7 @@ import gleam/string.{pad_left}
 import gleam/list.{key_find}
 import gleam/result.{replace_error, try}
 import gleam/io
-import day01/day01
-import day02/day02
+import days.{days}
 
 pub fn main() {
   case run() {
@@ -23,8 +22,6 @@ pub fn main() {
     }
   }
 }
-
-const days = [#("1", day01.parts), #("2", day02.parts)]
 
 type Args {
   RunSolution(day: String, part: String, filepath: String)
@@ -71,8 +68,8 @@ fn get_args() {
   }
 }
 
-fn add_new_day(day) {
-  let day = string.pad_left(day, 2, "0")
+fn add_new_day(day_unpadded) {
+  let day = string.pad_left(day_unpadded, 2, "0")
 
   let base = "src/day" <> day
   use _ <- try_fs(CopyDir, from: "src/template", to: base)
@@ -89,6 +86,22 @@ fn add_new_day(day) {
   let assert Ok(content) = simplifile.read(target)
   let content = string.replace(content, each: "__", with: day)
   let assert Ok(_) = simplifile.write(content, to: target)
+  io.println("Expanded test template")
+
+  let target = "src/days.gleam"
+  let assert Ok(content) = simplifile.read(target)
+  let content =
+    content
+    |> string.replace(
+      "// import\n",
+      "import day" <> day <> "/day" <> day <> "\n// import\n",
+    )
+    |> string.replace(
+      "// #()\n",
+      "#(\"" <> day_unpadded <> "\", day" <> day <> ".parts),\n  // #()\n",
+    )
+  let assert Ok(_) = simplifile.write(content, to: target)
+  io.println("Added day" <> day <> " to imports")
 
   Ok("Done!")
 }
