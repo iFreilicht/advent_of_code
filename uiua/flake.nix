@@ -1,21 +1,23 @@
 {
   description = "A very basic flake";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/459104f841356362bfb9ce1c788c1d42846b2454"; # Uiua 0.3.1
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.uiua = {
-    url = "github:uiua-lang/uiua";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.flake-utils.follows = "flake-utils";
-  };
 
-  outputs = { self, nixpkgs, flake-utils, uiua }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        uiua-pkg = uiua.packages.${system}.default;
-      in {
+      in
+      {
         devShell = pkgs.mkShellNoCC {
-          packages = [ uiua-pkg ];
+          packages = [ pkgs.uiua ];
         };
-      });
+      }
+    );
 }
