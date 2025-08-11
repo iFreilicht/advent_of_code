@@ -1,1 +1,0 @@
-AlignComments = 0 # Don't align comments, this currently breaks the formatter

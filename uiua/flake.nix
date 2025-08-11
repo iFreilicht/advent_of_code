@@ -1,6 +1,6 @@
 {
   description = "A very basic flake";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/459104f841356362bfb9ce1c788c1d42846b2454"; # Uiua 0.3.1
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/e6f23dc08d3624daab7094b701aa3954923c6bbb"; # Uiua 0.16.2
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs =
