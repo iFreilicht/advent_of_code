@@ -10,15 +10,15 @@ ListCoords ← (
 PaintLine     ← ⬚0+ ⍉°⊚°□ # Overlay a coordinate list on top of a board
 CountOverlaps ← /+/+∧≥2
 
-# Part 1
-⟜Zeroed Parsed
-▽≡(/+/=) . # Filter out diagonals
+Parsed
+∩⌟▽ ⟜¬≡(/+/=) . # Split list of lines into straights and diagonals
+⟜Zeroed
+# Part 1 (Straights only)
 ≡ListCoords
 ∧PaintLine
-CountOverlaps
+⊃˜⊙∘CountOverlaps # Get result and reorder stack for part 2
 
-# Part 2
-⟜Zeroed Parsed
+# Part 2 (Diagonals only, reusing intermediate result from Part 1 for improved performance)
 ≡ListCoords
 ∧PaintLine
 CountOverlaps
